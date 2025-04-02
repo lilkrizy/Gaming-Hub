@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball Quiz Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Updated font */
+            background-color: #121212; /* Dark background for better contrast */
+            color: white; /* Text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem; /* Larger title font size */
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Adding shadow for depth */
+        }
+
+        #quiz-container {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent container */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            width: 400px; /* Quiz container width */
+            text-align: center;
+        }
+
+        #question {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            list-style-type: none; /* Remove default list styling */
+            padding: 0; /* Remove padding */
+        }
+
+        .option {
+            background-color: #007BFF; /* Option button color */
+            color: white; /* Text color */
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            display: block; /* Block layout for the button */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+        }
+
+        .option:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly enlarge option on hover */
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .home-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745; /* Green background for the button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Basketball Quiz Game</h1>
+<div id="quiz-container">
+    <div id="question"></div>
+    <ul class="options" id="options"></ul> <!-- List for options -->
+    <div id="feedback"></div>
+</div>
+
+<button class="home-button" onclick="goHome()">Go Back to Home Page</button>
+
+<script>
+    const questions = [
+        {
+            question: "Who won the NBA Championship in 2020?",
+            options: ["Los Angeles Lakers", "Miami Heat", "Toronto Raptors", "Golden State Warriors"],
+            answer: "Los Angeles Lakers"
+        },
+        {
+            question: "Which player is known as 'King James'?",
+            options: ["Michael Jordan", "Kobe Bryant", "LeBron James", "Stephen Curry"],
+            answer: "LeBron James"
+        },
+        {
+            question: "What is the name of the NBA team based in Chicago?",
+            options: ["Bulls", "Celtics", "Heat", "Clippers"],
+            answer: "Bulls"
+        },
+        {
+            question: "How many points is a three-pointer worth?",
+            options: ["1", "2", "3", "4"],
+            answer: "3"
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function loadQuestion() {
+        const currentQuestion = questions[currentQuestionIndex];
+        document.getElementById("question").innerText = currentQuestion.question;
+        const optionsList = document.getElementById("options");
+        optionsList.innerHTML = ""; // Clear previous options
+
+        currentQuestion.options.forEach((option) => {
+            const li = document.createElement("li");
+            li.className = "option";
+            li.innerText = option;
+            li.onclick = () => checkAnswer(option);
+            optionsList.appendChild(li);
+        });
+    }
+
+    function checkAnswer(selectedOption) {
+        const currentQuestion = questions[currentQuestionIndex];
+        const feedback = document.getElementById("feedback");
+
+        if (selectedOption === currentQuestion.answer) {
+            feedback.innerText = "Correct!";
+            feedback.style.color = "green";
+        } else {
+            feedback.innerText = "Incorrect! The correct answer is: " + currentQuestion.answer;
+            feedback.style.color = "red";
+        }
+
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            setTimeout(() => {
+                feedback.innerText = ""; // Clear feedback
+                loadQuestion();
+            }, 2000); // Load next question after 2 seconds
+        } else {
+            setTimeout(() => {
+                feedback.innerText = "Quiz Over! Refresh the page to play again."; // End message
+                document.getElementById("options").innerHTML = ""; // Clear options
+            }, 2000);
+        }
+    }
+
+    function goHome() {
+        window.location.href = 'file:///C:/Users/krysz/OneDrive/Desktop/HTML/index.html'; // Replace with your actual homepage URL
+    }
+
+    // Load the first question
+    loadQuestion();
+</script>
+
+</body>
+</html>

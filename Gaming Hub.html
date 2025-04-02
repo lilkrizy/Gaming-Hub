@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gaming Training HUB</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Dark background for better focus */
+            color: #FFFFFF; /* White text color for contrast */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centering page content */
+            justify-content: center; /* Centering vertically */
+        }
+
+        /* Header styling */
+        h1 {
+            margin: 20px;
+            font-size: 2.5rem; /* Increased header size */
+            text-align: center;
+        }
+
+        /* Search container styling */
+        #search-container {
+            display: flex;
+            align-items: center;
+            margin: 20px; /* Spacing around the search container */
+        }
+
+        #search-bar {
+            padding: 10px;
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            margin-right: 10px; /* Space between input and button */
+            width: 250px; /* Fixed width for consistency */
+        }
+
+        #search-button {
+            background-color: #007BFF; /* Bootstrap primary color */
+            color: white;
+            border: none; /* No border */
+            padding: 10px 15px; /* Padding for the button */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        #search-button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        /* Result section styling */
+        #result {
+            margin: 20px 0;
+            width: 100%; /* Full width */
+            max-width: 600px; /* Max width for the results */
+            text-align: center; /* Center align results */
+        }
+
+        .player {
+            margin: 10px 0;
+        }
+
+        img {
+            width: 100px; /* Set image width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 50%; /* Circular images */
+        }
+
+        /* Video container styling */
+        .video-container {
+            margin: 20px; /* Space around video container */
+            text-align: center; /* Center video horizontally */
+        }
+
+        h2 {
+            margin-top: 20px;
+            margin-right: 2000px; /* Spacing above each video title */
+            font-size: 1.5rem; /* Size for video title */
+        }
+
+        /* Pre-game image styling */
+        .pregame-container {
+            margin: 20px; /* Space around the pre-game container */
+            cursor: pointer; /* Pointer cursor on image hover */
+            margin-right: 2000px; /* Add margin to the left */
+        }
+
+        .pregame-image {
+            width: 100%;
+            max-width: 560px; /* Max width limit for the image */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        /* Iframe styling */
+        .iframe-container {
+            margin: 20px; /* Space around the iframe container */
+            text-align: center; /* Center the iframe */
+            width: 100%; /* Full width */
+        }
+
+        iframe {
+            width: 80%; /* Adjusted width for better fit */
+            height: 600px; /* Height of the iframe, set to a fixed value */
+            border: 1px solid #333; /* Border around the iframe */
+            border-radius: 10px; /* Rounded corners for the iframe border */
+        }
+
+        .full-screen-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF; /* Bootstrap primary color */
+            color: white;
+            border: none; /* No border */
+            padding: 10px 15px; /* Padding for the button */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 5px; /* Rounded corners for the button */
+        }
+    </style>
+</head>
+<body>
+
+<h1>The Gaming Training HUB</h1>
+
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search for a player...">
+    <button id="search-button">Search</button>
+</div>
+
+<div id="result"></div>
+
+<div class="video-container">
+    <h2>Basketball Quiz</h2>
+    <div class="pregame-container" onclick="window.location.href='game.html';">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.S-Qt4T0lOuUqeSkdakX8MAHaEK?w=298&h=180&c=7&r=0&o=5&pid=1.7" alt="Pregame Image" class="pregame-image"> <!-- Replace with your image path -->
+    </div>
+</div>
+
+<!-- Iframe for additional content -->
+<div class="iframe-container">
+    <h2>Watch Our Training Videos</h2>
+    <button class="full-screen-button" onclick="toggleFullScreen()">Toggle Full Screen</button>
+    <iframe src="https://kg-fps.netlify.app/" title="Training Videos"></iframe> <!-- Replace with the actual URL -->
+</div>
+
+<script>
+    function toggleFullScreen() {
+        const iframe = document.querySelector('iframe');
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) { /* Firefox */
+          iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) { /* Chrome and Safari */
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { /* IE/Edge */
+          iframe.msRequestFullscreen();
+        } else {
+          alert("Your browser does not support full screen.");
+        }
+    }
+
+    // Player data
+    const players = {
+        lebron: {
+            name: 'LeBron James',
+            image: 'https://th.bing.com/th/id/OIP.DWH12rZ5aQTY2OHIpRY8ZAHaFW?w=276&h=200&c=7&r=0&o=5&pid=1.7',
+            page: 'gamb.html'
+        },
+        curry: {
+            name: 'Stephen Curry',
+            image: 'https://example.com/curry.jpg',
+            page: 'game.html'
+        },
+        morant: {
+            name: 'Ja Morant',
+            image: 'https://example.com/morant.jpg',
+            page: 'morant.html'
+        },
+        kobe: {
+            name: 'Kobe Bryant',
+            image: 'https://example.com/kobe.jpg',
+            page: 'kobe.html'
+        },
+        mj: {
+            name: 'Michael Jordan',
+            image: 'https://example.com/mj.jpg',
+            page: 'mj.html'
+        }
+    };
+
+    // Search functionality
+    const searchButton = document.getElementById('search-button');
+    const searchBar = document.getElementById('search-bar');
+    
+    searchButton.addEventListener('click', function () {
+        const searchValue = searchBar.value.toLowerCase();
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = ''; // Clear previous results
+
+        if (players[searchValue]) {
+            const player = players[searchValue];
+            resultDiv.innerHTML = `
+                <div class="player">
+                    <a href="${player.page}" style="color: white; text-decoration: none;">
+                        <img src="${player.image}" alt="${player.name}">
+                        <br>${player.name}
+                    </a>
+                </div>`;
+        } else {
+            resultDiv.innerHTML = '<p style="color: white;">Player not found</p>'; // Changed message for clarity
+        }
+
+        // Clear the search bar
+        searchBar.value = '';
+    });
+    
+    // Allow enter key to trigger search
+    searchBar.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            searchButton.click(); // Trigger click event on button
+        }
+    });
+</script>
+
+</body>
+</html>

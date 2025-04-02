@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://tse2.mm.bing.net/th/id/OIP.X1giJN9mtQexpegL_0loLwHaEo?w=291&h=181&c=7&r=0&o=5&pid=1.7'); /* Background image */
+            background-size: cover; /* Cover the whole viewport */
+            background-position: center; /* Center the background */
+            color: white; /* Text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem; /* Header font size */
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Text shadow */
+        }
+
+        #game-container {
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent container */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            text-align: center;
+            width: 300px; /* Fixed width */
+        }
+
+        .button {
+            background-color: #007BFF; /* Button color */
+            color: white; /* Button text color */
+            border: none; /* No border */
+            padding: 10px 20px; /* Padding */
+            margin: 10px; /* Margin */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+            font-size: 1.2rem; /* Font size */
+        }
+
+        .button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+
+        #result {
+            margin-top: 20px; /* Space above result */
+            font-size: 1.5rem; /* Font size for result text */
+        }
+
+        #score {
+            margin-top: 20px; /* Space above score */
+            font-size: 1.2rem; /* Font size for score */
+        }
+
+        #final-result {
+            margin-top: 20px; /* Space above final result */
+            font-size: 1.5rem; /* Font size for final result */
+            color: gold; /* Color for the final result */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Rock Paper Scissors</h1>
+<div id="game-container">
+    <button class="button" id="rock">Rock</button>
+    <button class="button" id="paper">Paper</button>
+    <button class="button" id="scissors">Scissors</button>
+    
+    <div id="result"></div>
+    <div id="score">Wins: 0 | Losses: 0</div>
+    <div id="final-result"></div>
+</div>
+
+<script>
+    let wins = 0;
+    let losses = 0;
+    const gamePoint = 10; // Set the game point to 10
+
+    const resultDiv = document.getElementById("result");
+    const scoreDiv = document.getElementById("score");
+    const finalResultDiv = document.getElementById("final-result");
+
+    document.getElementById("rock").onclick = () => play("rock");
+    document.getElementById("paper").onclick = () => play("paper");
+    document.getElementById("scissors").onclick = () => play("scissors");
+
+    function play(userChoice) {
+        if (wins < gamePoint && losses < gamePoint) {
+            const choices = ["rock", "paper", "scissors"];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            
+            let result;
+            if (userChoice === computerChoice) {
+                result = "It's a tie!";
+            } else if (
+                (userChoice === "rock" && computerChoice === "scissors") ||
+                (userChoice === "paper" && computerChoice === "rock") ||
+                (userChoice === "scissors" && computerChoice === "paper")
+            ) {
+                result = "You win!";
+                wins++;
+            } else {
+                result = "You lose!";
+                losses++;
+            }
+
+            resultDiv.innerText = `You chose ${userChoice}. Computer chose ${computerChoice}. ${result}`;
+            scoreDiv.innerText = `Wins: ${wins} | Losses: ${losses}`;
+
+            // Check for overall winner
+            if (wins === gamePoint) {
+                finalResultDiv.innerText = "Congratulations! You are the champion!";
+            } else if (losses === gamePoint) {
+                finalResultDiv.innerText = "Game over! The computer wins!";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
