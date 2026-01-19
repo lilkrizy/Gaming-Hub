@@ -3,232 +3,1011 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gaming Training HUB</title>
-    <style>
-        /* General styling */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #121212; /* Dark background for better focus */
-            color: #FFFFFF; /* White text color for contrast */
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centering page content */
-            justify-content: center; /* Centering vertically */
-        }
-
-        /* Header styling */
-        h1 {
-            margin: 20px;
-            font-size: 2.5rem; /* Increased header size */
-            text-align: center;
-        }
-
-        /* Search container styling */
-        #search-container {
-            display: flex;
-            align-items: center;
-            margin: 20px; /* Spacing around the search container */
-        }
-
-        #search-bar {
-            padding: 10px;
-            border: none; /* Remove border */
-            border-radius: 5px; /* Rounded corners */
-            margin-right: 10px; /* Space between input and button */
-            width: 250px; /* Fixed width for consistency */
-        }
-
-        #search-button {
-            background-color: #007BFF; /* Bootstrap primary color */
-            color: white;
-            border: none; /* No border */
-            padding: 10px 15px; /* Padding for the button */
-            cursor: pointer; /* Pointer cursor on hover */
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-        }
-
-        #search-button:hover {
-            background-color: #0056b3; /* Darker shade on hover */
-        }
-
-        /* Result section styling */
-        #result {
-            margin: 20px 0;
-            width: 100%; /* Full width */
-            max-width: 600px; /* Max width for the results */
-            text-align: center; /* Center align results */
-        }
-
-        .player {
-            margin: 10px 0;
-        }
-
-        img {
-            width: 100px; /* Set image width */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 50%; /* Circular images */
-        }
-
-        /* Video container styling */
-        .video-container {
-            margin: 20px; /* Space around video container */
-            text-align: center; /* Center video horizontally */
-        }
-
-        h2 {
-            margin-top: 20px;
-            margin-right: 2000px; /* Spacing above each video title */
-            font-size: 1.5rem; /* Size for video title */
-        }
-
-        /* Pre-game image styling */
-        .pregame-container {
-            margin: 20px; /* Space around the pre-game container */
-            cursor: pointer; /* Pointer cursor on image hover */
-            margin-right: 2000px; /* Add margin to the left */
-        }
-
-        .pregame-image {
-            width: 100%;
-            max-width: 560px; /* Max width limit for the image */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px; /* Rounded corners */
-        }
-
-        /* Iframe styling */
-        .iframe-container {
-            margin: 20px; /* Space around the iframe container */
-            text-align: center; /* Center the iframe */
-            width: 100%; /* Full width */
-        }
-
-        iframe {
-            width: 80%; /* Adjusted width for better fit */
-            height: 600px; /* Height of the iframe, set to a fixed value */
-            border: 1px solid #333; /* Border around the iframe */
-            border-radius: 10px; /* Rounded corners for the iframe border */
-        }
-
-        .full-screen-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #007BFF; /* Bootstrap primary color */
-            color: white;
-            border: none; /* No border */
-            padding: 10px 15px; /* Padding for the button */
-            cursor: pointer; /* Pointer cursor on hover */
-            border-radius: 5px; /* Rounded corners for the button */
-        }
-    </style>
+    <title>Anive Edjour's Ebook Store</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Creati</h1>
+    </header>
+    <section>
+        <p class="welcome">Welcome to Anive Edjour's Ebook Store</p>
+        <div class="categories">
+            <button class="category-btn active" onclick="filterBooks('all')">All</button>
+            <button class="category-btn" onclick="filterBooks('romance')">Romance</button>
+            <button class="category-btn" onclick="filterBooks('action')">Action</button>
+            <button class="category-btn" onclick="filterBooks('comedy')">Comedy</button>
+            <button class="category-btn" onclick="filterBooks('fantasy')">Fantasy</button>
+            <button class="category-btn" onclick="filterBooks('mystery')">Mystery</button>
+            <button class="category-btn" onclick="filterBooks('sci-fi')">Sci-Fi</button>
+            <button class="category-btn" onclick="filterBooks('cpp')">C++</button>
+            <button class="category-btn" onclick="filterBooks('javascript')">JavaScript</button>
+        </div>
+        <div class="grid" id="book-grid">
+            <!-- Books will be generated here -->
+        </div>
+    </section>
+            <div class="item">
+                <div class="thumbnail">Book Cover 1</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 1</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(1)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 2</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 2</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(2)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 3</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 3</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(3)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 4</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 4</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(4)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 5</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 5</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(5)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 6</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 6</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(6)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 7</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 7</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(7)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 8</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 8</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(8)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 9</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 9</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(9)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 10</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 10</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(10)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 11</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 11</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(11)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 12</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 12</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(12)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 13</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 13</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(13)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 14</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 14</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(14)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 15</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 15</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(15)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 16</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 16</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(16)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 17</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 17</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(17)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 18</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 18</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(18)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 19</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 19</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(19)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 20</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 20</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(20)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 21</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 21</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(21)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 22</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 22</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(22)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 23</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 23</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(23)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 24</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 24</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(24)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 25</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 25</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(25)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 26</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 26</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(26)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 27</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 27</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(27)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 28</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 28</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(28)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 29</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 29</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(29)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 30</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 30</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(30)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 31</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 31</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(31)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 32</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 32</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(32)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 33</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 33</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(33)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 34</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 34</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(34)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 35</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 35</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(35)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 36</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 36</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(36)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 37</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 37</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(37)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 38</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 38</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(38)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 39</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 39</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(39)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 40</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 40</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(40)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 41</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 41</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(41)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 42</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 42</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(42)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 43</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 43</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(43)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 44</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 44</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(44)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 45</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 45</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(45)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 46</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 46</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(46)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 47</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 47</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(47)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 48</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 48</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(48)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 49</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 49</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(49)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 50</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 50</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(50)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 51</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 51</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(51)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 52</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 52</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(52)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 53</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 53</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(53)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 54</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 54</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(54)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 55</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 55</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(55)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 56</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 56</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(56)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 57</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 57</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(57)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 58</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 58</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(58)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 59</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 59</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(59)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 60</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 60</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(60)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 61</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 61</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(61)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 62</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 62</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(62)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 63</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 63</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(63)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 64</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 64</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(64)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 65</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 65</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(65)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 66</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 66</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(66)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 67</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 67</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(67)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 68</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 68</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(68)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 69</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 69</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(69)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 70</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 70</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(70)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 71</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 71</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(71)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 72</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 72</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(72)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 73</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 73</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(73)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 74</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 74</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(74)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 75</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 75</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(75)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 76</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 76</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(76)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 77</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 77</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(77)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 78</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 78</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(78)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 79</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 79</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(79)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 80</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 80</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(80)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 81</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 81</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(81)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 82</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 82</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(82)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 83</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 83</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(83)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 84</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 84</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(84)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 85</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 85</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(85)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 86</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 86</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(86)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 87</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 87</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(87)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 88</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 88</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(88)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 89</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 89</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(89)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 90</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 90</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(90)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 91</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 91</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(91)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 92</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 92</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(92)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 93</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 93</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(93)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 94</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 94</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(94)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 95</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 95</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(95)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 96</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 96</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(96)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 97</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 97</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(97)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 98</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 98</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(98)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 99</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 99</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(99)">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumbnail">Book Cover 100</div>
+                <div class="info">
+                    <h3 class="title">Ebook Title 100</h3>
+                    <p class="meta">By Anive Edjour • $9.99</p>
+                    <button class="button" onclick="buyBook(100)">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const books = [
+            { id: 1, title: "Whispers of the Eternal Flame", imageUrl: "https://picsum.photos/seed/dragonfire/250/350", category: "fantasy", price: "$9.99" },
+            { id: 2, title: "Love in the Shadows of Time", imageUrl: "https://picsum.photos/seed/romancecastle/250/350", category: "romance", price: "$9.99" },
+            { id: 3, title: "Galactic Warriors: Rise of the Stars", imageUrl: "https://picsum.photos/seed/spaceship/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 4, title: "The Comedy of Cosmic Errors", imageUrl: "https://picsum.photos/seed/comedymagic/250/350", category: "comedy", price: "$9.99" },
+            { id: 5, title: "Blades of Destiny", imageUrl: "https://picsum.photos/seed/swordhero/250/350", category: "action", price: "$9.99" },
+            { id: 6, title: "The Enigma of the Lost Temple", imageUrl: "https://picsum.photos/seed/templemystery/250/350", category: "mystery", price: "$9.99" },
+            { id: 7, title: "Hearts Entwined in Midnight Shadows", imageUrl: "https://picsum.photos/seed/moonlove/250/350", category: "romance", price: "$9.99" },
+            { id: 8, title: "Dragons of the Forgotten Realm", imageUrl: "https://picsum.photos/seed/dragons/250/350", category: "fantasy", price: "$9.99" },
+            { id: 9, title: "Cybernetic Revolution", imageUrl: "https://picsum.photos/seed/cyberpunk/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 10, title: "Laughs from the Abyss", imageUrl: "https://picsum.photos/seed/abysshumor/250/350", category: "comedy", price: "$9.99" },
+            { id: 11, title: "Storm of the Century", imageUrl: "https://picsum.photos/seed/stormwarrior/250/350", category: "action", price: "$9.99" },
+            { id: 12, title: "The Phantom's Secret", imageUrl: "https://picsum.photos/seed/phantomghost/250/350", category: "mystery", price: "$9.99" },
+            { id: 13, title: "Passion Under the Northern Lights", imageUrl: "https://picsum.photos/seed/auroralove/250/350", category: "romance", price: "$9.99" },
+            { id: 14, title: "Wizards of the Crystal Tower", imageUrl: "https://picsum.photos/seed/crystalwizard/250/350", category: "fantasy", price: "$9.99" },
+            { id: 15, title: "Alien Invasion Chronicles", imageUrl: "https://picsum.photos/seed/alienmonster/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 16, title: "Hilarious Hijinks in Hogwarts", imageUrl: "https://picsum.photos/seed/hogwartshumor/250/350", category: "comedy", price: "$9.99" },
+            { id: 17, title: "Ninja Shadows Unleashed", imageUrl: "https://picsum.photos/seed/shadowninja/250/350", category: "action", price: "$9.99" },
+            { id: 18, title: "The Riddle of the Crimson Rose", imageUrl: "https://picsum.photos/seed/crimsonrose/250/350", category: "mystery", price: "$9.99" },
+            { id: 19, title: "Eternal Love Across Dimensions", imageUrl: "https://picsum.photos/seed/dimensionlove/250/350", category: "romance", price: "$9.99" },
+            { id: 20, title: "Guardians of the Ancient Scrolls", imageUrl: "https://picsum.photos/seed/ancientscroll/250/350", category: "fantasy", price: "$9.99" },
+            { id: 21, title: "Quantum Leap Adventures", imageUrl: "https://picsum.photos/seed/quantumleap/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 22, title: "Stand-Up in the Zombie Apocalypse", imageUrl: "https://picsum.photos/seed/zombiecomedy/250/350", category: "comedy", price: "$9.99" },
+            { id: 23, title: "Thunderbolt Fury", imageUrl: "https://picsum.photos/seed/thunderbolt/250/350", category: "action", price: "$9.99" },
+            { id: 24, title: "Whispers from the Grave", imageUrl: "https://picsum.photos/seed/gravewhisper/250/350", category: "mystery", price: "$9.99" },
+            { id: 25, title: "Moonlit Serenade", imageUrl: "https://picsum.photos/seed/moonlitlove/250/350", category: "romance", price: "$9.99" },
+            { id: 26, title: "Elven Kingdoms United", imageUrl: "https://picsum.photos/seed/elvenkingdom/250/350", category: "fantasy", price: "$9.99" },
+            { id: 27, title: "AI Uprising: Humanity's Last Stand", imageUrl: "https://picsum.photos/seed/aiuprising/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 28, title: "Clowning Around in Chaos", imageUrl: "https://picsum.photos/seed/chaosclown/250/350", category: "comedy", price: "$9.99" },
+            { id: 29, title: "Samurai Spirit Awakened", imageUrl: "https://picsum.photos/seed/samurispirit/250/350", category: "action", price: "$9.99" },
+            { id: 30, title: "The Curse of the Black Diamond", imageUrl: "https://picsum.photos/seed/blackdiamond/250/350", category: "mystery", price: "$9.99" },
+            { id: 31, title: "Forbidden Desires in Paris", imageUrl: "https://picsum.photos/seed/parisdesire/250/350", category: "romance", price: "$9.99" },
+            { id: 32, title: "Mages of the Void", imageUrl: "https://picsum.photos/seed/voidmage/250/350", category: "fantasy", price: "$9.99" },
+            { id: 33, title: "Colony on Mars: Red Planet Dreams", imageUrl: "https://picsum.photos/seed/marsdream/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 34, title: "Misadventures of a Time Traveler", imageUrl: "https://picsum.photos/seed/timetravel/250/350", category: "comedy", price: "$9.99" },
+            { id: 35, title: "Viking Raiders of the Sea", imageUrl: "https://picsum.photos/seed/vikingraid/250/350", category: "action", price: "$9.99" },
+            { id: 36, title: "The Illusionist's Final Trick", imageUrl: "https://picsum.photos/seed/illusiontrick/250/350", category: "mystery", price: "$9.99" },
+            { id: 37, title: "Summer Love by the Beach", imageUrl: "https://picsum.photos/seed/beachlove/250/350", category: "romance", price: "$9.99" },
+            { id: 38, title: "Prophecies of the Dragon King", imageUrl: "https://picsum.photos/seed/dragonking/250/350", category: "fantasy", price: "$9.99" },
+            { id: 39, title: "Neural Network Nightmares", imageUrl: "https://picsum.photos/seed/neuralnightmare/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 40, title: "Royal Jester's Japes", imageUrl: "https://picsum.photos/seed/jesterjape/250/350", category: "comedy", price: "$9.99" },
+            { id: 41, title: "Gladiator Games Eternal", imageUrl: "https://picsum.photos/seed/gladiatoret/250/350", category: "action", price: "$9.99" },
+            { id: 42, title: "The Vanishing Heiress", imageUrl: "https://picsum.photos/seed/vanishingheir/250/350", category: "mystery", price: "$9.99" },
+            { id: 43, title: "Soulmates in the City Lights", imageUrl: "https://picsum.photos/seed/citylightlove/250/350", category: "romance", price: "$9.99" },
+            { id: 44, title: "Sorcerers of the Silver Moon", imageUrl: "https://picsum.photos/seed/silvermoon/250/350", category: "fantasy", price: "$9.99" },
+            { id: 45, title: "Dimensional Rift Explorers", imageUrl: "https://picsum.photos/seed/dimensionalrift/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 46, title: "Pirate's Treasure of Laughs", imageUrl: "https://picsum.photos/seed/piratelaught/250/350", category: "comedy", price: "$9.99" },
+            { id: 47, title: "Desert Storm Warriors", imageUrl: "https://picsum.photos/seed/desertstorm/250/350", category: "action", price: "$9.99" },
+            { id: 48, title: "The Ghost Writer's Secret", imageUrl: "https://picsum.photos/seed/ghostwriter/250/350", category: "mystery", price: "$9.99" },
+            { id: 49, title: "Winter Wonderland Romance", imageUrl: "https://picsum.photos/seed/winterwonder/250/350", category: "romance", price: "$9.99" },
+            { id: 50, title: "Knights of the Round Table Reborn", imageUrl: "https://picsum.photos/seed/roundtable/250/350", category: "fantasy", price: "$9.99" },
+            { id: 51, title: "Virtual Reality Vendetta", imageUrl: "https://picsum.photos/seed/virtualreality/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 52, title: "Superhero Sidekicks' Shenanigans", imageUrl: "https://picsum.photos/seed/superheroside/250/350", category: "comedy", price: "$9.99" },
+            { id: 53, title: "Mountain Peak Showdown", imageUrl: "https://picsum.photos/seed/mountainpeak/250/350", category: "action", price: "$9.99" },
+            { id: 54, title: "The Midnight Masquerade Murder", imageUrl: "https://picsum.photos/seed/midnightmask/250/350", category: "mystery", price: "$9.99" },
+            { id: 55, title: "Destined Hearts in Venice", imageUrl: "https://picsum.photos/seed/veniceheart/250/350", category: "romance", price: "$9.99" },
+            { id: 56, title: "Fairy Tales Twisted", imageUrl: "https://picsum.photos/seed/fairytale/250/350", category: "fantasy", price: "$9.99" },
+            { id: 57, title: "Starship Captain's Log", imageUrl: "https://picsum.photos/seed/starshipcap/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 58, title: "Alien Abduction Antics", imageUrl: "https://picsum.photos/seed/alienabduct/250/350", category: "comedy", price: "$9.99" },
+            { id: 59, title: "Jungle Survival Instincts", imageUrl: "https://picsum.photos/seed/junglesurvive/250/350", category: "action", price: "$9.99" },
+            { id: 60, title: "The Locked Room Enigma", imageUrl: "https://picsum.photos/seed/lockedroom/250/350", category: "mystery", price: "$9.99" },
+            { id: 61, title: "High School Sweethearts Forever", imageUrl: "https://picsum.photos/seed/highschool/250/350", category: "romance", price: "$9.99" },
+            { id: 62, title: "Mythical Beasts Unleashed", imageUrl: "https://picsum.photos/seed/mythicalbeast/250/350", category: "fantasy", price: "$9.99" },
+            { id: 63, title: "Holographic Heist", imageUrl: "https://picsum.photos/seed/holographic/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 64, title: "Office Pranks Gone Wrong", imageUrl: "https://picsum.photos/seed/officeprank/250/350", category: "comedy", price: "$9.99" },
+            { id: 65, title: "Urban Street Fighters", imageUrl: "https://picsum.photos/seed/urbanfight/250/350", category: "action", price: "$9.99" },
+            { id: 66, title: "The Poisoned Chalice", imageUrl: "https://picsum.photos/seed/poisonchalice/250/350", category: "mystery", price: "$9.99" },
+            { id: 67, title: "Island Paradise Passion", imageUrl: "https://picsum.photos/seed/islandparadise/250/350", category: "romance", price: "$9.99" },
+            { id: 68, title: "Warlocks of the Underworld", imageUrl: "https://picsum.photos/seed/underworldwar/250/350", category: "fantasy", price: "$9.99" },
+            { id: 69, title: "Nanobot Invasion", imageUrl: "https://picsum.photos/seed/nanobotinv/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 70, title: "Wizard's Apprentice Blunders", imageUrl: "https://picsum.photos/seed/apprenticeblun/250/350", category: "comedy", price: "$9.99" },
+            { id: 71, title: "Arctic Expedition Endurance", imageUrl: "https://picsum.photos/seed/arcticexped/250/350", category: "action", price: "$9.99" },
+            { id: 72, title: "The Shadow Organization", imageUrl: "https://picsum.photos/seed/shadoworg/250/350", category: "mystery", price: "$9.99" },
+            { id: 73, title: "Second Chance at Love", imageUrl: "https://picsum.photos/seed/secondchancelove/250/350", category: "romance", price: "$9.99" },
+            { id: 74, title: "Enchanted Forest Guardians", imageUrl: "https://picsum.photos/seed/enchantedforest/250/350", category: "fantasy", price: "$9.99" },
+            { id: 75, title: "Interstellar Diplomacy", imageUrl: "https://picsum.photos/seed/interstellardiplo/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 76, title: "Medieval Knight's Misadventures", imageUrl: "https://picsum.photos/seed/medievalknight/250/350", category: "comedy", price: "$9.99" },
+            { id: 77, title: "Volcano Eruption Escape", imageUrl: "https://picsum.photos/seed/volcanoescape/250/350", category: "action", price: "$9.99" },
+            { id: 78, title: "The Cryptic Codebreakers", imageUrl: "https://picsum.photos/seed/crypticcode/250/350", category: "mystery", price: "$9.99" },
+            { id: 79, title: "Cowboy's Heart of Gold", imageUrl: "https://picsum.photos/seed/cowboyheart/250/350", category: "romance", price: "$9.99" },
+            { id: 80, title: "Crystal Caverns of Power", imageUrl: "https://picsum.photos/seed/crystalcavern/250/350", category: "fantasy", price: "$9.99" },
+            { id: 81, title: "Android Awakening", imageUrl: "https://picsum.photos/seed/androidawake/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 82, title: "Super Spy Spoof", imageUrl: "https://picsum.photos/seed/superspy/250/350", category: "comedy", price: "$9.99" },
+            { id: 83, title: "Submarine Depth Defiers", imageUrl: "https://picsum.photos/seed/submarinedepth/250/350", category: "action", price: "$9.99" },
+            { id: 84, title: "The Haunted Mansion Mystery", imageUrl: "https://picsum.photos/seed/hauntedmansion/250/350", category: "mystery", price: "$9.99" },
+            { id: 85, title: "Enemies to Lovers Trope", imageUrl: "https://picsum.photos/seed/enemiestolovers/250/350", category: "romance", price: "$9.99" },
+            { id: 86, title: "Phoenix Rising from Ashes", imageUrl: "https://picsum.photos/seed/phoenixrise/250/350", category: "fantasy", price: "$9.99" },
+            { id: 87, title: "Black Hole Explorers", imageUrl: "https://picsum.photos/seed/blackholeexp/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 88, title: "Vampire Dating Dilemmas", imageUrl: "https://picsum.photos/seed/vampiredate/250/350", category: "comedy", price: "$9.99" },
+            { id: 89, title: "Skydiving Survival", imageUrl: "https://picsum.photos/seed/skydivingsurv/250/350", category: "action", price: "$9.99" },
+            { id: 90, title: "The Alchemist's Formula", imageUrl: "https://picsum.photos/seed/alchemistform/250/350", category: "mystery", price: "$9.99" },
+            { id: 91, title: "Royal Wedding Whirlwind", imageUrl: "https://picsum.photos/seed/royalwedding/250/350", category: "romance", price: "$9.99" },
+            { id: 92, title: "Trolls of the Mountain Peaks", imageUrl: "https://picsum.photos/seed/mountaintroll/250/350", category: "fantasy", price: "$9.99" },
+            { id: 93, title: "Time Loop Paradox", imageUrl: "https://picsum.photos/seed/timelooppara/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 94, title: "Werewolf Wedding Crashers", imageUrl: "https://picsum.photos/seed/werewolfwed/250/350", category: "comedy", price: "$9.99" },
+            { id: 95, title: "Extreme Sports Champions", imageUrl: "https://picsum.photos/seed/extremesport/250/350", category: "action", price: "$9.99" },
+            { id: 96, title: "The Invisible Thief", imageUrl: "https://picsum.photos/seed/invisiblethief/250/350", category: "mystery", price: "$9.99" },
+            { id: 97, title: "Love Letters from the Front", imageUrl: "https://picsum.photos/seed/loveletters/250/350", category: "romance", price: "$9.99" },
+            { id: 98, title: "Unicorn Kingdom Chronicles", imageUrl: "https://picsum.photos/seed/unicornkingdom/250/350", category: "fantasy", price: "$9.99" },
+            { id: 99, title: "Clone Conspiracy Uncovered", imageUrl: "https://picsum.photos/seed/cloneconsp/250/350", category: "sci-fi", price: "$9.99" },
+            { id: 100, title: "Jester's Court Jesters", imageUrl: "https://picsum.photos/seed/jestercourt/250/350", category: "comedy", price: "$9.99" },
+            { id: 101, title: "Mastering C++ Programming", imageUrl: "https://picsum.photos/seed/cppcode/250/350", category: "cpp", price: "$9.99" },
+            { id: 102, title: "C++ Game Development", imageUrl: "https://picsum.photos/seed/cppgame/250/350", category: "cpp", price: "$9.99" },
+            { id: 103, title: "Advanced C++ Techniques", imageUrl: "https://picsum.photos/seed/cppadvanced/250/350", category: "cpp", price: "$9.99" },
+            { id: 104, title: "JavaScript for Beginners", imageUrl: "https://picsum.photos/seed/jsbeginner/250/350", category: "javascript", price: "$9.99" },
+            { id: 105, title: "Modern JavaScript Frameworks", imageUrl: "https://picsum.photos/seed/jsframework/250/350", category: "javascript", price: "$9.99" },
+            { id: 106, title: "JavaScript Web Development", imageUrl: "https://picsum.photos/seed/jswebdev/250/350", category: "javascript", price: "$9.99" }
+        ];
 
-<h1>The Gaming Training HUB</h1>
+        const favorites = [
+            "Laughs from the Abyss",
+            "Blades of Destiny",
+            "Cybernetic Revolution",
+            "Storm of the Century",
+            "The Phantom's Secret",
+            "Alien Invasion Chronicles",
+            "Thunderbolt Fury",
+            "Moonlit Serenade",
+            "Whispers from the Grave",
+            "Elven Kingdoms United",
+            "Samurai Spirit Awakened",
+            "Mages of the Void",
+            "Viking Raiders of the Sea",
+            "Royal Jester's Japes",
+            "Gladiator Games Eternal",
+            "The Vanishing Heiress",
+            "Dragons of the Forgotten Realm",
+            "High School Sweethearts Forever",
+            "Hearts Entwined in Midnight Shadows",
+            "Winter Wonderland Romance",
+            "Royal Wedding Whirlwind",
+            "Love Letters from the Front"
+        ];
 
-<div id="search-container">
-    <input type="text" id="search-bar" placeholder="Search for a player...">
-    <button id="search-button">Search</button>
-</div>
+        let currentCategory = 'all';
 
-<div id="result"></div>
-
-<div class="video-container">
-    <h2>Basketball Quiz</h2>
-    <div class="pregame-container" onclick="window.location.href='game.html';">
-        <img src="https://tse4.mm.bing.net/th/id/OIP.S-Qt4T0lOuUqeSkdakX8MAHaEK?w=298&h=180&c=7&r=0&o=5&pid=1.7" alt="Pregame Image" class="pregame-image"> <!-- Replace with your image path -->
-    </div>
-</div>
-
-<!-- Iframe for additional content -->
-<div class="iframe-container">
-    <h2>Watch Our Training Videos</h2>
-    <button class="full-screen-button" onclick="toggleFullScreen()">Toggle Full Screen</button>
-    <iframe src="https://kg-fps.netlify.app/" title="Training Videos"></iframe> <!-- Replace with the actual URL -->
-</div>
-
-<script>
-    function toggleFullScreen() {
-        const iframe = document.querySelector('iframe');
-        if (iframe.requestFullscreen) {
-          iframe.requestFullscreen();
-        } else if (iframe.mozRequestFullScreen) { /* Firefox */
-          iframe.mozRequestFullScreen();
-        } else if (iframe.webkitRequestFullscreen) { /* Chrome and Safari */
-          iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) { /* IE/Edge */
-          iframe.msRequestFullscreen();
-        } else {
-          alert("Your browser does not support full screen.");
+        function renderBooks(filteredBooks) {
+            const grid = document.getElementById('book-grid');
+            grid.innerHTML = '';
+            filteredBooks.forEach(book => {
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.innerHTML = `
+                    <div class="thumbnail" style="background-image: url('${book.imageUrl}');"></div>
+                    ${favorites.includes(book.title) ? '<p class="favorite">Most Favorites</p>' : ''}
+                    <div class="info">
+                        <h3 class="title">${book.title}</h3>
+                        <p class="meta">By Anive Edjour • ${book.price}</p>
+                        <button class="button" onclick="buyBook(${book.id}, '${book.title.replace(/'/g, "\\'")}', '${book.price}')">Buy Now</button>
+                    </div>
+                `;
+                grid.appendChild(item);
+            });
         }
-    }
 
-    // Player data
-    const players = {
-        lebron: {
-            name: 'LeBron James',
-            image: 'https://th.bing.com/th/id/OIP.DWH12rZ5aQTY2OHIpRY8ZAHaFW?w=276&h=200&c=7&r=0&o=5&pid=1.7',
-            page: 'gamb.html'
-        },
-        curry: {
-            name: 'Stephen Curry',
-            image: 'https://example.com/curry.jpg',
-            page: 'game.html'
-        },
-        morant: {
-            name: 'Ja Morant',
-            image: 'https://example.com/morant.jpg',
-            page: 'morant.html'
-        },
-        kobe: {
-            name: 'Kobe Bryant',
-            image: 'https://example.com/kobe.jpg',
-            page: 'kobe.html'
-        },
-        mj: {
-            name: 'Michael Jordan',
-            image: 'https://example.com/mj.jpg',
-            page: 'mj.html'
-        }
-    };
-
-    // Search functionality
-    const searchButton = document.getElementById('search-button');
-    const searchBar = document.getElementById('search-bar');
-    
-    searchButton.addEventListener('click', function () {
-        const searchValue = searchBar.value.toLowerCase();
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = ''; // Clear previous results
-
-        if (players[searchValue]) {
-            const player = players[searchValue];
-            resultDiv.innerHTML = `
-                <div class="player">
-                    <a href="${player.page}" style="color: white; text-decoration: none;">
-                        <img src="${player.image}" alt="${player.name}">
-                        <br>${player.name}
-                    </a>
-                </div>`;
-        } else {
-            resultDiv.innerHTML = '<p style="color: white;">Player not found</p>'; // Changed message for clarity
+        function filterBooks(category) {
+            currentCategory = category;
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            let filteredBooks;
+            if (category === 'all') {
+                filteredBooks = books;
+            } else {
+                filteredBooks = books.filter(book => book.category === category);
+            }
+            renderBooks(filteredBooks);
         }
 
-        // Clear the search bar
-        searchBar.value = '';
-    });
-    
-    // Allow enter key to trigger search
-    searchBar.addEventListener('keypress', function (event) {
-        if (event.key === 'Enter') {
-            searchButton.click(); // Trigger click event on button
+        function buyBook(id, title, price) {
+            const encodedTitle = encodeURIComponent(title);
+            const encodedPrice = encodeURIComponent(price);
+            window.location.href = `sell.html?id=${id}&title=${encodedTitle}&author=Anive%20Edjour&price=${encodedPrice}`;
         }
-    });
-</script>
 
+        // Initial render
+        renderBooks(books);
+    </script>
 </body>
 </html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Ebook - Anive Edjour</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Anive Edjour's Ebook Store</h1>
+    </header>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-step active" id="step1">1. Book Details</div>
+            <div class="progress-step" id="step2">2. Payment Method</div>
+            <div class="progress-step" id="step3">3. Complete Purchase</div>
+        </div>
+        <div class="book-cover" id="book-cover">Book Cover</div>
+        <h2 class="book-title" id="book-title">Ebook Title</h2>
+        <p class="book-author" id="book-author">By Anive Edjour</p>
+        <p class="book-price" id="book-price">$9.99</p>
+        <p class="book-description">
+            This is a captivating ebook by Anive Edjour. Dive into an engaging story filled with adventure, mystery, and profound insights. Perfect for readers who enjoy thought-provoking narratives and immersive storytelling.
+        </p>
+        
+        <div class="payment-section" id="payment-section" style="display: none;">
+            <div class="form-group">
+                <label for="customer-email">Email Address (for download link)</label>
+                <input type="email" id="customer-email" placeholder="your@email.com" required>
+            </div>
+            <h3>Select Payment Method</h3>
+            <select id="payment-method" onchange="showPaymentForm()">
+                <option value="">Choose a payment method</option>
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="bank-transfer">Bank Transfer</option>
+            </select>
+            
+            <div id="credit-card-form" class="payment-form" style="display: none;">
+                <h4>Credit Card Information</h4>
+                <form id="cc-form">
+                    <div class="form-group">
+                        <label for="card-name">Cardholder Name</label>
+                        <input type="text" id="card-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div id="paypal-form" class="payment-form" style="display: none;">
+                <h4>PayPal Payment</h4>
+                <p>You will be redirected to PayPal to complete your purchase securely.</p>
+                <button type="button" class="paypal-btn" onclick="processPayPal()">Pay with PayPal</button>
+            </div>
+            
+            <div id="bank-transfer-form" class="payment-form" style="display: none;">
+                <h4>Bank Transfer</h4>
+                <p>Please transfer the amount to the following account:</p>
+                <div class="bank-details">
+                    <p><strong>Bank:</strong> Example Bank</p>
+                    <p><strong>Account Name:</strong> Anive Edjour</p>
+                    <p><strong>Account Number:</strong> 1234567890</p>
+                    <p><strong>Routing Number:</strong> 0987654321</p>
+                    <p><strong>Amount:</strong> <span id="transfer-amount">$9.99</span></p>
+                </div>
+                <p>Include your order ID in the transfer reference.</p>
+            </div>
+        </div>
+        
+        <button class="purchase-btn" id="purchase-btn" onclick="completePurchase()">Complete Purchase</button>
+        <div class="back-link">
+            <a href="index.html">← Back to Store</a>
+        </div>
+    </div>
+    
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const title = urlParams.get('title') || 'Ebook Title ' + (id || '1');
+        const author = urlParams.get('author') || 'Anive Edjour';
+        const price = urlParams.get('price') || '$9.99';
+        
+        document.getElementById('book-title').textContent = title;
+        document.getElementById('book-cover').textContent = 'Book Cover';
+        document.getElementById('book-author').textContent = 'By ' + author;
+        document.getElementById('book-price').textContent = price;
+        function updateProgressBar(step) {
+            const progressBar = document.querySelector('.progress-bar');
+            const width = (step - 1) / 2 * 100;
+            progressBar.style.setProperty('--progress-width', width + '%');
+        }
+        
+        // Initialize progress
+        updateProgressBar(1);
+        
+        function showPaymentForm() {
+            const method = document.getElementById('payment-method').value;
+            const forms = document.querySelectorAll('.payment-form');
+            forms.forEach(form => {
+                form.style.display = 'none';
+                form.classList.remove('fade-in');
+            });
+            if (method) {
+                const form = document.getElementById(method + '-form');
+                form.style.display = 'block';
+                setTimeout(() => form.classList.add('fade-in'), 10);
+                
+                // Update progress
+                document.getElementById('step1').classList.add('completed');
+                document.getElementById('step2').classList.add('active');
+                updateProgressBar(2);
+            }
+        }
+        
+        function validateCreditCard() {
+            const name = document.getElementById('card-name').value.trim();
+            const number = document.getElementById('card-number').value.replace(/\s/g, '');
+            const expiry = document.getElementById('expiry').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
+            
+            if (!name) {
+                alert('Please enter cardholder name');
+                return false;
+            }
+            if (!/^\d{13,19}$/.test(number)) {
+                alert('Please enter a valid card number');
+                return false;
+            }
+            if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+                alert('Please enter expiry date in MM/YY format');
+                return false;
+            }
+            if (!/^\d{3,4}$/.test(cvv)) {
+                alert('Please enter a valid CVV');
+                return false;
+            }
+            return true;
+        }
+        
+        function processPayPal() {
+            // In a real implementation, this would redirect to PayPal with payment details
+            // For demo purposes, redirect to PayPal login
+            window.open('https://www.paypal.com/signin', '_blank');
+            
+            // Simulate successful payment after redirect
+            setTimeout(() => {
+                updateProgressBar(3);
+                document.getElementById('payment-section').style.display = 'none';
+                document.getElementById('purchase-btn').style.display = 'none';
+                const email = document.getElementById('customer-email').value.trim();
+                const bookTitle = document.getElementById('book-title').textContent;
+                const downloadLink = `https://example.com/download/${encodeURIComponent(bookTitle.replace(/\s+/g, '_').toLowerCase())}.pdf`;
+                sendDownloadEmail(email, bookTitle, downloadLink);
+                
+                document.querySelector('.container').innerHTML += `
+                    <div class="success-message fade-in">
+                        <h3>Payment Successful!</h3>
+                        <p>Thank you for your purchase. Your ebook download link has been sent to ${email}.</p>
+                        <p>You can also <a href="index.html">return to the store</a> to browse more books.</p>
+                    </div>
+                `;
+                // Scroll to top to show progress bar
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 5000); // Give time for user to "complete" on PayPal
+        }
+        
+        function completePurchase() {
+            const paymentSection = document.getElementById('payment-section');
+            const btn = document.getElementById('purchase-btn');
+            
+            if (paymentSection.style.display === 'none') {
+                // Show payment section
+                paymentSection.style.display = 'block';
+                paymentSection.classList.add('fade-in');
+                btn.textContent = 'Pay Now';
+                // Scroll to payment section
+                paymentSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Update progress
+                document.getElementById('step1').classList.add('completed');
+                document.getElementById('step2').classList.add('active');
+                updateProgressBar(2);
+                return;
+            }
+            
+            // Process payment
+            const email = document.getElementById('customer-email').value.trim();
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                // Show visual feedback instead of alert
+                const emailInput = document.getElementById('customer-email');
+                emailInput.style.borderColor = '#ff0000';
+                emailInput.focus();
+                return;
+            }
+            
+            const method = document.getElementById('payment-method').value;
+            if (!method) {
+                // Show visual feedback instead of alert
+                const select = document.getElementById('payment-method');
+                select.style.borderColor = '#ff0000';
+                select.focus();
+                return;
+            }
+            
+            // Update progress to step 3
+            document.getElementById('step2').classList.add('completed');
+            document.getElementById('step3').classList.add('completed');
+            updateProgressBar(3);
+            
+            if (method === 'credit-card') {
+                if (!validateCreditCard()) {
+                    // Reset progress if validation fails
+                    document.getElementById('step3').classList.remove('active');
+                    updateProgressBar(2);
+                    return;
+                }
+                // Send download email and show success message
+                const bookTitle = document.getElementById('book-title').textContent;
+                const downloadLink = `https://example.com/download/${encodeURIComponent(bookTitle.replace(/\s+/g, '_').toLowerCase())}.pdf`;
+                sendDownloadEmail(email, bookTitle, downloadLink);
+                
+                document.getElementById('payment-section').style.display = 'none';
+                document.getElementById('purchase-btn').style.display = 'none';
+                document.querySelector('.container').innerHTML += `
+                    <div class="success-message fade-in">
+                        <h3>Payment Successful!</h3>
+                        <p>Thank you for your purchase. Your ebook download link has been sent to ${email}.</p>
+                        <p>You can also <a href="index.html">return to the store</a> to browse more books.</p>
+                    </div>
+                `;
+                // Ensure progress bar is updated
+                updateProgressBar(3);
+                // Scroll to top to show progress bar
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (method === 'paypal') {
+                processPayPal();
+                return;
+            } else if (method === 'bank-transfer') {
+                // Send download email and show success message
+                const bookTitle = document.getElementById('book-title').textContent;
+                const downloadLink = `https://example.com/download/${encodeURIComponent(bookTitle.replace(/\s+/g, '_').toLowerCase())}.pdf`;
+                sendDownloadEmail(email, bookTitle, downloadLink);
+                
+                // Show success message
+                document.getElementById('payment-section').style.display = 'none';
+                document.getElementById('purchase-btn').style.display = 'none';
+                document.querySelector('.container').innerHTML += `
+                    <div class="success-message fade-in">
+                        <h3>Bank Transfer Initiated!</h3>
+                        <p>Thank you for your purchase. Bank transfer instructions have been sent to ${email}.</p>
+                        <p>Please complete the transfer within 48 hours to receive your download link.</p>
+                        <p>You can also <a href="index.html">return to the store</a> to browse more books.</p>
+                    </div>
+                `;
+                // Ensure progress bar is updated
+                updateProgressBar(3);
+                // Scroll to top to show progress bar
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+        
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        })();
+        
+        // Function to send download link email
+        function sendDownloadEmail(email, bookTitle, downloadLink) {
+            // Check if EmailJS is properly configured
+            if (emailjs && typeof emailjs.send === 'function') {
+                const templateParams = {
+                    to_email: email,
+                    book_title: bookTitle,
+                    download_link: downloadLink,
+                    customer_email: email
+                };
+                
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                    .then(function(response) {
+                        console.log('Email sent successfully!', response.status, response.text);
+                    }, function(error) {
+                        console.log('Failed to send email:', error);
+                        // Show email content as fallback
+                        showEmailFallback(email, bookTitle, downloadLink);
+                    });
+            } else {
+                // EmailJS not loaded or configured, show fallback
+                showEmailFallback(email, bookTitle, downloadLink);
+            }
+        }
+        
+        // Fallback function to show email content
+        function showEmailFallback(email, bookTitle, downloadLink) {
+            const emailContent = `
+Subject: Your Ebook Download - ${bookTitle}
+
+Dear Customer,
+
+Thank you for your purchase! Here are your download details:
+
+Book Title: ${bookTitle}
+Download Link: ${downloadLink}
+
+Click the link above to download your ebook. The link will remain active for 30 days.
+
+If you have any questions, please contact our support team.
+
+Best regards,
+Anive Edjour's Ebook Store
+            `;
+            
+            // Show modal with email content
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8); display: flex; align-items: center;
+                justify-content: center; z-index: 1000; font-family: Arial, sans-serif;
+            `;
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 10px; max-width: 500px; max-height: 80vh; overflow-y: auto;">
+                    <h3 style="color: #ff69b4; margin-top: 0;">Email Preview</h3>
+                    <p><strong>To:</strong> ${email}</p>
+                    <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; white-space: pre-wrap; font-family: monospace; font-size: 12px;">${emailContent}</pre>
+                    <p style="color: #666; font-size: 14px;">Note: This is a preview. To send real emails, configure EmailJS following the setup guide.</p>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: #ff69b4; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Close</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+    </script>
+</body>
+</html>

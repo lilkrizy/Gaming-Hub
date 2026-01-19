@@ -1,0 +1,7 @@
+--- a/config/session.php
++++ b/config/session.php
+@@
+     'secure' => env('SESSION_SECURE_COOKIE', true),
+-    'http_only' => false,
++    'http_only' => true,
+     'same_site' => 'lax',
